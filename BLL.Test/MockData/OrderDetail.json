@@ -1,0 +1,16 @@
+[
+  {
+    "Id": "311b848d-1234-443e-5e85-08d946c2256c",
+    "Name": "Black Shirt 1",
+    "Type": "Shirt",
+    "Gender": "Male",
+    "Price": 50000
+  },
+  {
+    "Id": "311b848d-abcd-443e-5e85-08d946c2256c",
+    "Name": "Red Shirt 1",
+    "Type": "Shirt",
+    "Gender": "Female",
+    "Price": 50000
+  }
+]
