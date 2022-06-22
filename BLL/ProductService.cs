@@ -26,8 +26,6 @@ namespace BLL
             return await _unitOfWork.ProductRepository.GetAll().ToListAsync();
         }
 
-      
-
         public async Task<List<Product>> FilterPost(Product product)
         {
 
@@ -55,7 +53,6 @@ namespace BLL
             await _unitOfWork.ProductRepository.AddAsync(product);
             await _unitOfWork.SaveAsync();
 
-            //await SendGameToEventHub(game);
         }
 
         public async Task UpdateProductAsync(Product product)

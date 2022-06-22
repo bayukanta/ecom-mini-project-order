@@ -15,9 +15,13 @@ namespace DAL.Models
         public Guid Id { get; set; }
 
         public Guid OrderId { get; set; }
+
+        [ForeignKey("OrderId")]
         public Order Order { get; set; }
 
         public Guid ProductId { get; set; }
+
+        [ForeignKey("ProductId")]
         public Product Product { get; set; }
 
         public int Quantity { get; set; }

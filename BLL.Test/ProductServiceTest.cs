@@ -198,7 +198,30 @@ namespace BLL.Test
             await act.Should().NotThrowAsync<Exception>();
             uow.Verify(x => x.SaveAsync(It.IsAny<CancellationToken>()), Times.AtLeastOnce);
         }
+        [Theory]
+        [InlineData("Shirt", "Shirt", "Male")]
+        public async Task FilterSearch_Success( string name, string type, String gender)
+        {
+            //arrange
+            var p = new Product
+            {
+                Name = name,
+                Type = type,
+                Gender = gender,
+            };
+            var expected = products.First(x => x.Name.Contains(name) && x.Type == type && x.Gender == gender);
 
+            var svc = CreateProductService();
+
+
+            var actual = await svc.FilterPost(p);
+
+            actual.Should().BeEquivalentTo(expected);
+
+
+
+
+        }
 
 
     }

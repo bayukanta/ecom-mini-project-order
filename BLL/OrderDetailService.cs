@@ -43,8 +43,15 @@ namespace BLL
         //sending order detail to eventhub for every orderdetail
         public async Task CreateOrderDetailAsync(OrderDetail od)
         {
+            
             await _unitOfWork.OrderDetailRepository.AddAsync(od);
             await _unitOfWork.SaveAsync();
+
+            var order = await _unitOfWork.OrderRepository.GetByIdAsync(od.OrderId);
+            od.Order = order;
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(od.ProductId);
+            od.Product = product;
+
 
             await SendOrderDetailToEventHub(od);
         }

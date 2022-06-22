@@ -45,47 +45,8 @@ namespace API.Controllers
             return new OkObjectResult(mappedResult);
         }
 
-        /// <summary>
-        /// Get all product by gender
-        /// </summary>
-        /// <param gender="gender"> gender.</param>
-        /// <response code="200">Request ok.</response>
-        /// <response code="400">Request failed because of an exception.</response>
-        [HttpGet]
-        [Route("gender/{gender}")]
-        [ProducesResponseType(typeof(List<OrderDTO>), 200)]
-        [ProducesResponseType(typeof(string), 400)]
-        //[Authorize]
-        public async Task<ActionResult> GetByGender([FromRoute] string gender)
-        {
-            List<DAL.Models.Product> result = await _productService.GetAllProductByGenderAsync(gender);
-            if (result != null)
-            {
-                List<ProductDTO> mappedResult = _mapper.Map<List<ProductDTO>>(result);
-                return new OkObjectResult(mappedResult);
-            }
-            return new NotFoundResult();
-        }
-        /// <summary>
-        /// Get all by filter
-        /// </summary>
-        /// <response code="200">Request ok.</response>
-        /// <response code="400">Request failed because of an exception.</response>
-        [HttpGet]
-        [Route("type={type}&gender={gender}&s={search}")]
-        [ProducesResponseType(typeof(List<ProductDTO>), 200)]
-        [ProducesResponseType(typeof(string), 400)]
-        //[Authorize]
-        public async Task<ActionResult> Filter([FromRoute] string type, string gender, string search)
-        {
-            List<DAL.Models.Product> result = await _productService.Filter(type, gender, search);
-            if (result != null)
-            {
-                List<ProductDTO> mappedResult = _mapper.Map<List<ProductDTO>>(result);
-                return new OkObjectResult(mappedResult);
-            }
-            return new NotFoundResult();
-        }
+        
+       
 
         /// <summary>
         /// Get all by filter
@@ -109,28 +70,7 @@ namespace API.Controllers
             return new NotFoundResult();
         }
 
-        /// <summary>
-        /// Get all product by tyoe
-        /// </summary>
-        /// <param gender="gender"> gender.</param>
-        /// <response code="200">Request ok.</response>
-        /// <response code="400">Request failed because of an exception.</response>
-        [HttpGet]
-        [Route("type/{gender}")]
-        [ProducesResponseType(typeof(List<OrderDTO>), 200)]
-        [ProducesResponseType(typeof(string), 400)]
-        //[Authorize]
-        public async Task<ActionResult> GetByType([FromRoute] string type)
-        {
-
-            List<DAL.Models.Product> result = await _productService.GetAllProductByTypeAsync(type);
-            if (result != null)
-            {
-                List<ProductDTO> mappedResult = _mapper.Map<List<ProductDTO>>(result);
-                return new OkObjectResult(mappedResult);
-            }
-            return new NotFoundResult();
-        }
+        
 
         /// <summary>
         /// Get product by id

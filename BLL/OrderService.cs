@@ -40,6 +40,13 @@ namespace BLL
                 .FirstOrDefaultAsync(b => b.UserId == userId);
         }
 
+        //get order by order id
+        public async Task<Order> GetOrderById(Guid id) 
+        {
+            return await _unitOfWork.OrderRepository
+                .GetByIdAsync(id);
+        }
+
         //order created when user want to buy the first time (acting as a cart) before it gets approved later
         public async Task CreateOrderAsync(Order order)
         {
