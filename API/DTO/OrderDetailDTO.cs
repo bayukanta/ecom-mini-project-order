@@ -17,8 +17,6 @@ namespace API.DTO
 
     public class OrderDetailWithDataDTO : OrderDetailDTO
     {
-        public OrderDTO Order { get; set; }
-
         public ProductDTO Product { get; set; }
     }
 

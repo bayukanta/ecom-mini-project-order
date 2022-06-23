@@ -37,13 +37,13 @@ namespace API.Controllers
         /// <response code="200">Request ok.</response>
         /// <response code="400">Request failed because of an exception.</response>
         [HttpGet]
-        [Route("{id}")]
-        [ProducesResponseType(typeof(List<OrderDetailDTO>), 200)]
+        [Route("{orderId}")]
+        [ProducesResponseType(typeof(List<OrderDetailWithDataDTO>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         //[Authorize]
-        public async Task<ActionResult> GetByOrderId([FromRoute] Guid id)
+        public async Task<ActionResult> GetByOrderId([FromRoute] Guid orderId)
         {
-            List<DAL.Models.OrderDetail> result = await _orderDetailService.GetAllOrderDetailByOrderIdAsync(id);
+            List<DAL.Models.OrderDetail> result = await _orderDetailService.GetAllOrderDetailByOrderIdAsync(orderId);
             if (result != null)
             {
                 List<OrderDetailWithDataDTO> mappedResult = _mapper.Map<List<OrderDetailWithDataDTO>>(result);

@@ -25,6 +25,8 @@ namespace DAL.Models
         public Product Product { get; set; }
 
         public int Quantity { get; set; }
+
+        public int OrderPrice { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public OrderDetail()

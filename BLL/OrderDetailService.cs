@@ -29,13 +29,13 @@ namespace BLL
 
         public async Task<List<OrderDetail>> GetAllOrderDetailByOrderIdAsync(Guid orderId)
         {
-            var od = await _redis.GetAsync<List<OrderDetail>>($"od_orderId:{orderId}");
-            if(od == null)
-            {
-                od = await _unitOfWork.OrderDetailRepository.GetAll().Where(x => x.OrderId == orderId).ToListAsync();
+            //var od = await _redis.GetAsync<List<OrderDetail>>($"od_orderId:{orderId}");
+            //if(od == null)
+            //{
+                var od = await _unitOfWork.OrderDetailRepository.GetAll().Include(a => a.Product).Where(x => x.OrderId == orderId).ToListAsync();
                 await _redis.SaveAsync($"od_orderId:{orderId}", od);
 
-            }
+            //}
             return od;
 
         }
@@ -43,11 +43,13 @@ namespace BLL
         //sending order detail to eventhub for every orderdetail
         public async Task CreateOrderDetailAsync(OrderDetail od)
         {
-            
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(od.ProductId);
+            od.OrderPrice = od.Quantity * product.HargaJual;
             await _unitOfWork.OrderDetailRepository.AddAsync(od);
             await _unitOfWork.SaveAsync();
 
-            //var order = await _unitOfWork.OrderRepository.GetByIdAsync(od.OrderId);
+
+            
             //od.Order = order;
             //var product = await _unitOfWork.ProductRepository.GetByIdAsync(od.ProductId);
             //od.Product = product;

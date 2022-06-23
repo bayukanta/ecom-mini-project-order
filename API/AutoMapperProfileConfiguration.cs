@@ -17,6 +17,10 @@ namespace API
             CreateMap<Product, ProductSearchDTO>();
             CreateMap<OrderDetailDTO, OrderDetail>();
             CreateMap<OrderDetail, OrderDetailDTO>();
+            CreateMap<OrderDetailWithDataDTO, OrderDetail>()
+                .ForMember(s => s.ProductId, d => d.MapFrom(t => t.Product.Id))
+                .ForMember(s => s.Product, opt => opt.Ignore());
+            CreateMap<OrderDetail, OrderDetailWithDataDTO>();
         }
     }
 }

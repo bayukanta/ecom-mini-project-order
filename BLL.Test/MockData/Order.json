@@ -1,16 +1,15 @@
 [
   {
-    "Id": "311b848d-1234-443e-5e85-08d946c2256c",
-    "Name": "Black Shirt 1",
-    "Type": "Shirt",
-    "Gender": "Male",
-    "Price": 50000
+    "id": "3fa85f64-1234-4562-b3fc-2c963f66afa6",
+    "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "status": "Pending"
   },
+
+  
   {
-    "Id": "311b848d-abcd-443e-5e85-08d946c2256c",
-    "Name": "Red Shirt 1",
-    "Type": "Shirt",
-    "Gender": "Female",
-    "Price": 50000
+    "id": "3fa85f64-5678-4562-b3fc-2c963f66afa6",
+    "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "status": "Approved"
   }
+  
 ]
