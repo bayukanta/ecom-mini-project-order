@@ -20,6 +20,14 @@ namespace DAL.Models
         //"Male" or "Female"
         public string Gender { get; set; }
 
-        public int Price { get; set; }
+        //public int Price { get; set; }
+
+        public string Img { get; set; }
+
+        public string Keterangan { get; set; }
+
+        public int HargaAwal { get; set; }
+
+        public int HargaJual { get; set; }
     }
 }

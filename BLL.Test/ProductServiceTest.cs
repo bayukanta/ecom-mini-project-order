@@ -142,7 +142,11 @@ namespace BLL.Test
                 Name = "Black Shirt 2",
                 Type = "SHirt",
                 Gender = "Male",
-                Price = 50000
+                Keterangan = "Hitam",
+                Img = "black",
+                HargaAwal = 50000,
+                HargaJual = 40000
+
             };
 
             var svc = CreateProductService();
@@ -175,8 +179,8 @@ namespace BLL.Test
         }
 
         [Theory]
-        [InlineData("311b848d-1234-443e-5e85-08d946c2256c", "Black Shirt 1 Edit", "Shirt Edit", "Male Edit", 60000)]
-        public async Task UpdateProduct_Success(string Id, string name, string type, String gender, int price)
+        [InlineData("311b848d-1234-443e-5e85-08d946c2256c", "Black Shirt 1 Edit", "Shirt Edit", "Male Edit", "black", "baju hitam", 30000, 20000)]
+        public async Task UpdateProduct_Success(string Id, string name, string type, String gender, String img, String keterangan, int hargaAwal, int hargaJual)
         {
             //arrange
             var expected = new Product
@@ -185,7 +189,10 @@ namespace BLL.Test
                 Name = name,
                 Type = type,
                 Gender = gender,
-                Price = price
+                Img = img,
+                Keterangan = keterangan,
+                HargaAwal = hargaAwal,
+                HargaJual = hargaJual
             };
 
             var svc = CreateProductService();
