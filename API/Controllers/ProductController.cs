@@ -82,7 +82,7 @@ namespace API.Controllers
         [Route("{id}")]
         [ProducesResponseType(typeof(ProductDTO), 200)]
         [ProducesResponseType(typeof(string), 400)]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> GetById([FromRoute] Guid id)
         {
             DAL.Models.Product result = await _productService.GetProductByIdAsync(id);
