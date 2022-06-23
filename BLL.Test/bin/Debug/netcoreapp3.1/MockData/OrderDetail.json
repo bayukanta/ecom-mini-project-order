@@ -1,0 +1,34 @@
+[
+  {
+    "product": {
+      "id": "c7001964-7172-4a93-87e5-08da52923109",
+      "name": "Black Shirt 1",
+      "type": "Shirt",
+      "gender": "Male",
+      "img": null,
+      "keterangan": null,
+      "hargaAwal": 0,
+      "hargaJual": 50000
+    },
+    "id": "fdf13026-6ba6-4d25-f0e8-08da54d7e338",
+    "orderId": "31f6a101-4b1e-4757-ea2a-08da4f679b9d",
+    "productId": "c7001964-7172-4a93-87e5-08da52923109",
+    "quantity": 4
+  },
+  {
+    "product": {
+      "id": "c7001964-7172-4a93-87e5-08da52923109",
+      "name": "Black Shirt 1",
+      "type": "Shirt",
+      "gender": "Male",
+      "img": null,
+      "keterangan": null,
+      "hargaAwal": 0,
+      "hargaJual": 50000
+    },
+    "id": "af38bc2f-7175-4d21-9c7e-08da54dad69f",
+    "orderId": "31f6a101-4b1e-4757-ea2a-08da4f679b9d",
+    "productId": "c7001964-7172-4a93-87e5-08da52923109",
+    "quantity": 4
+  }
+]

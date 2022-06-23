@@ -72,6 +72,15 @@ namespace API
                 }
                 });
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                     builder => builder.SetIsOriginAllowedToAllowWildcardSubdomains()
+                         .WithOrigins("*")
+                         .AllowAnyMethod()
+                         .AllowAnyHeader()
+                         .Build());
+            });
 
             services.AddHttpContextAccessor();
             services.AddApplicationInsightsTelemetry();
@@ -96,6 +105,7 @@ namespace API
             {
                 endpoints.MapControllers();
             });
+            app.UseCors("CorsPolicy");
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

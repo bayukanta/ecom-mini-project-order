@@ -194,3 +194,5 @@ D:\MiniProject\Mini-Project-Order\BLL.Test\obj\Debug\netcoreapp3.1\BLL.Test.dll
 D:\MiniProject\Mini-Project-Order\BLL.Test\obj\Debug\netcoreapp3.1\BLL.Test.pdb
 D:\MiniProject\Mini-Project-Order\BLL.Test\obj\Debug\netcoreapp3.1\BLL.Test.genruntimeconfig.cache
 D:\MiniProject\Mini-Project-Order\BLL.Test\bin\Debug\netcoreapp3.1\MockData\Product.json
+D:\MiniProject\Mini-Project-Order\BLL.Test\bin\Debug\netcoreapp3.1\MockData\Order.json
+D:\MiniProject\Mini-Project-Order\BLL.Test\bin\Debug\netcoreapp3.1\MockData\OrderDetail.json

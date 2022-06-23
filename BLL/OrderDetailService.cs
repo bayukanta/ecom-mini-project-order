@@ -29,13 +29,13 @@ namespace BLL
 
         public async Task<List<OrderDetail>> GetAllOrderDetailByOrderIdAsync(Guid orderId)
         {
-            //var od = await _redis.GetAsync<List<OrderDetail>>($"od_orderId:{orderId}");
-            //if(od == null)
-            //{
-                var od = await _unitOfWork.OrderDetailRepository.GetAll().Include(a => a.Product).Where(x => x.OrderId == orderId).ToListAsync();
+            var od = await _redis.GetAsync<List<OrderDetail>>($"od_orderId:{orderId}");
+            if (od == null)
+            {
+                od = await _unitOfWork.OrderDetailRepository.GetAll().Include(a => a.Product).Where(x => x.OrderId == orderId).ToListAsync();
                 await _redis.SaveAsync($"od_orderId:{orderId}", od);
 
-            //}
+            }
             return od;
 
         }
