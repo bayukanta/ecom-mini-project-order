@@ -43,7 +43,7 @@ namespace API
             services.AddCors(options =>
             {
                 options.AddPolicy(name : "CorsPolicy",
-                     builder => builder.SetIsOriginAllowedToAllowWildcardSubdomains()
+                     builder => builder
                          .WithOrigins("*")
                          .AllowAnyMethod()
                          .AllowAnyHeader()
@@ -97,9 +97,9 @@ namespace API
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
             app.UseCors("CorsPolicy");
 
+            app.UseAuthentication();
 
             app.UseRouting();
 
