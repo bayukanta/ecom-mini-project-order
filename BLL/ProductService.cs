@@ -57,8 +57,8 @@ namespace BLL
 
         public async Task UpdateProductAsync(Product product)
         {
-            Product productFromDb = await _unitOfWork.ProductRepository.GetSingleAsync(x => x.Id == product.Id);
-            if (productFromDb == null)
+            bool isExist = _unitOfWork.ProductRepository.GetAll().Where(x => x.Id == product.Id).Any();
+            if (!isExist)
             {
                 throw new Exception($"Product with id {product.Id} not exist");
             }

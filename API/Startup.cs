@@ -40,6 +40,15 @@ namespace API
               options
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name : "CorsPolicy",
+                     builder => builder.SetIsOriginAllowedToAllowWildcardSubdomains()
+                         .WithOrigins("*")
+                         .AllowAnyMethod()
+                         .AllowAnyHeader()
+                         .Build());
+            });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRedisService, RedisService>();
             services.AddScoped<IOrderEventSenderFactory, OrderEventSenderFactory>();
@@ -72,15 +81,7 @@ namespace API
                 }
                 });
             });
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                     builder => builder.SetIsOriginAllowedToAllowWildcardSubdomains()
-                         .WithOrigins("*")
-                         .AllowAnyMethod()
-                         .AllowAnyHeader()
-                         .Build());
-            });
+            
 
             services.AddHttpContextAccessor();
             services.AddApplicationInsightsTelemetry();
@@ -96,6 +97,9 @@ namespace API
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseCors("CorsPolicy");
+
 
             app.UseRouting();
 
@@ -105,7 +109,6 @@ namespace API
             {
                 endpoints.MapControllers();
             });
-            app.UseCors("CorsPolicy");
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
