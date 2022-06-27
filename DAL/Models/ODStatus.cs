@@ -8,34 +8,23 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    public class OrderDetail
+    public class ODStatus
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public Guid ODId { get; set; }
+
         public Guid OrderId { get; set; }
 
-        [ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public Guid UserId { get; set; }
 
-        public Guid ProductId { get; set; }
-
-        [ForeignKey("ProductId")]
-        public Product Product { get; set; }
-
-        public int Quantity { get; set; }
+        public bool Delivered { get; set; }
 
         public int OrderPrice { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public OrderDetail()
+        public ODStatus()
         {
             CreatedDate = DateTime.Now;
         }
-
-
-
-
-
     }
 }

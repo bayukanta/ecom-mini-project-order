@@ -51,6 +51,28 @@ namespace API.Controllers
         }
 
         /// <summary>
+        /// Get all order by user that is not pending
+        /// </summary>
+        /// <param id="userId"> user id.</param>
+        /// <response code="200">Request ok.</response>
+        /// <response code="400">Request failed because of an exception.</response>
+        [HttpGet]
+        [Route("ongoing/{userId}")]
+        [ProducesResponseType(typeof(List<OrderDTO>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        //[Authorize]
+        public async Task<ActionResult> GetOngoingByUserId([FromRoute] Guid userId)
+        {
+            List<DAL.Models.Order> result = await _orderService.GetAllOngoingOrderByUserIdAsync(userId);
+            if (result != null)
+            {
+                List<OrderDTO> mappedResult = _mapper.Map<List<OrderDTO>>(result);
+                return new OkObjectResult(mappedResult);
+            }
+            return new NotFoundResult();
+        }
+
+        /// <summary>
         /// Get pending order by user to use as cart
         /// </summary>
         /// <param id="userId"> user id.</param>

@@ -44,6 +44,8 @@ namespace BLL
         public async Task CreateOrderDetailAsync(OrderDetail od)
         {
             var product = await _unitOfWork.ProductRepository.GetByIdAsync(od.ProductId);
+            var order = await _unitOfWork.OrderRepository.GetByIdAsync(od.OrderId);
+            od.Order = order;
             od.OrderPrice = od.Quantity * product.HargaJual;
             await _unitOfWork.OrderDetailRepository.AddAsync(od);
             await _unitOfWork.SaveAsync();

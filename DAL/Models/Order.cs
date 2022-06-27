@@ -16,9 +16,6 @@ namespace DAL.Models
         public Guid UserId { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        [JsonIgnore]
-        public List<OrderDetail> OrderDetails { get; set; }
-
         //should be "Pending", "Approved", or "Rejected"
         public string Status { get; set; }
 

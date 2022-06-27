@@ -31,6 +31,15 @@ namespace BLL
                 .ToListAsync();
         }
 
+        public async Task<List<Order>> GetAllOngoingOrderByUserIdAsync(Guid userId)
+        {
+            return await _unitOfWork.OrderRepository
+                .GetAll()
+                .Where(x => x.UserId == userId)
+                .Where(x => x.Status == "Ongoing")
+                .ToListAsync();
+        }
+
         //get order that is pending to act as a cart
         public async Task<Order> GetOrderByUserIdAsync(Guid userId)
         {
