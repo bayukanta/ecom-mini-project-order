@@ -29,14 +29,8 @@ namespace BLL
 
         public async Task<List<OrderDetail>> GetAllOrderDetailByOrderIdAsync(Guid orderId)
         {
-            var od = await _redis.GetAsync<List<OrderDetail>>($"od_orderId:{orderId}");
-            if (od == null)
-            {
-                od = await _unitOfWork.OrderDetailRepository.GetAll().Include(a => a.Product).Where(x => x.OrderId == orderId).ToListAsync();
-                await _redis.SaveAsync($"od_orderId:{orderId}", od);
-
-            }
-            return od;
+            
+              return await _unitOfWork.OrderDetailRepository.GetAll().Include(a => a.Product).Where(x => x.OrderId == orderId).ToListAsync();
 
         }
 
@@ -49,9 +43,11 @@ namespace BLL
             od.OrderPrice = od.Quantity * product.HargaJual;
             await _unitOfWork.OrderDetailRepository.AddAsync(od);
             await _unitOfWork.SaveAsync();
+            var odRedis = _redis.GetAsync<List<OrderDetail>>($"od_orderId:{od.OrderId}");
 
 
-            
+
+
             //od.Order = order;
             //var product = await _unitOfWork.ProductRepository.GetByIdAsync(od.ProductId);
             //od.Product = product;
