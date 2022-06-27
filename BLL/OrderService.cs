@@ -68,8 +68,8 @@ namespace BLL
         //will get called after getting approved event from eventhub
         public async Task UpdateOrderAsync(Order order)
         {
-            Order orderFromDb = await _unitOfWork.OrderRepository.GetSingleAsync(x => x.Id == order.Id);
-            if (orderFromDb == null)
+            bool isExist = _unitOfWork.OrderRepository.GetAll().Where(x => x.Id == order.Id).Any();
+            if (!isExist)
             {
                 throw new Exception($"Order with id {order.Id} not exist");
             }
