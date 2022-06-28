@@ -34,6 +34,13 @@ namespace BLL
 
         }
 
+        public async Task<List<OrderDetail>> GetAllOrderDetail()
+        {
+
+            return await _unitOfWork.OrderDetailRepository.GetAll().Include(a => a.Product).ToListAsync();
+
+        }
+
         //sending order detail to eventhub for every orderdetail
         public async Task CreateOrderDetailAsync(OrderDetail od)
         {
@@ -43,7 +50,6 @@ namespace BLL
             od.OrderPrice = od.Quantity * product.HargaJual;
             await _unitOfWork.OrderDetailRepository.AddAsync(od);
             await _unitOfWork.SaveAsync();
-            var odRedis = _redis.GetAsync<List<OrderDetail>>($"od_orderId:{od.OrderId}");
 
 
 

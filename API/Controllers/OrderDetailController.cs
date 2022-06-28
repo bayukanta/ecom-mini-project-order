@@ -51,6 +51,28 @@ namespace API.Controllers
             }
             return new NotFoundResult();
         }
+        /// <summary>
+        /// Get all orderDetail by orderId
+        /// </summary>
+        /// <param id="userId"> user id.</param>
+        /// <response code="200">Request ok.</response>
+        /// <response code="400">Request failed because of an exception.</response>
+        [HttpGet]
+        [Route("")]
+        [ProducesResponseType(typeof(List<OrderDetailWithDataDTO>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        //[Authorize]
+        public async Task<ActionResult> GetAllByOrder()
+        {
+            List<DAL.Models.OrderDetail> result = await _orderDetailService.GetAllOrderDetail();
+            if (result != null)
+            {
+                List<OrderDetailWithDataDTO> mappedResult = _mapper.Map<List<OrderDetailWithDataDTO>>(result);
+                return new OkObjectResult(mappedResult);
+            }
+            return new NotFoundResult();
+        }
+
 
         /// <summary>
         /// Create orderDetail 
