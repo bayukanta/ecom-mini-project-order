@@ -52,6 +52,7 @@ namespace API
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRedisService, RedisService>();
             services.AddScoped<IOrderEventSenderFactory, OrderEventSenderFactory>();
+            services.AddHostedService<ApprovedListener>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tutorial Net Core", Version = "v1" });
